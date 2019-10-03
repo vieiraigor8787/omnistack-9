@@ -12,6 +12,11 @@ function App() {
     event.preventDefault()
 
     const res = await api.post('/sessions', { email })
+    // console.log(res)
+    const { _id } = res.data
+    console.log(_id)
+    //armazenar o id do usuário no meu localstorage
+    localStorage.setItem('user', _id)
   }
 
   return (
