@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import api from '../../services/api'
+import api from '../../services/api';
 
-export default function Login() {
+export default function Login({ history }) {
     const [email, setEmail] = useState('')
 
     async function handleSubmit(event){
@@ -13,6 +13,8 @@ export default function Login() {
       console.log(_id)
       //armazenar o id do usuário no meu localstorage
       localStorage.setItem('user', _id)
+      //enviar o usuário para rota '/dashboard' depois de logar
+      history.push('/dashboard')
     }
 
     return (
