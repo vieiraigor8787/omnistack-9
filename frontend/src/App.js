@@ -1,16 +1,18 @@
-import React from 'react';
-import api from './services/api'
+import React, { useState } from 'react';
+import api from './services/api';
 
 import './App.css';
 
-import logo from './assets/logo.svg'
+import logo from './assets/logo.svg';
 
 function App() {
-  function handleSubmit(event){
-    event.preventDefault()
-    console.log('heloooooo')
-  }
+  const [email, setEmail] = useState('')
 
+  async function handleSubmit(event){
+    event.preventDefault()
+
+    const res = await api.post('/sessions', { email })
+  }
 
   return (
     <div className="container">
@@ -26,7 +28,9 @@ function App() {
           <input 
           id="email"
           type="email" 
-          placeholder="Seu e-mail" 
+          placeholder="Seu e-mail"
+          value={email}
+          onChange={event => setEmail(event.target.value)}
           />
 
           <button className="btn" type="submit">Entrar</button>
